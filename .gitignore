@@ -24,7 +24,11 @@ go.work.sum
 # env file
 .env
 
+.vscode
+
 bin
 tmp
 *.db
-tailwindcss
+node_modules/**
+package-lock.json
+package.json

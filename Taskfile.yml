@@ -1,0 +1,9 @@
+version: '3'
+
+tasks:
+  generate:
+   aliases:
+     - run
+   desc: "Run main.go"
+   cmds:
+     - go run cmd/main.go

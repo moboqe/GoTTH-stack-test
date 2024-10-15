@@ -118,7 +118,7 @@ func main() {
 	logger.Info("Shutting down server")
 
 	// Create a context with a timeout for shutdown
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 
 	// Attempt to gracefully shut down the server
