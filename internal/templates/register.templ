@@ -1,25 +1,32 @@
 package templates
 
 templ RegisterPage() {
-	<div hx-ext="response-targets">
+	<div
+		class="flex flex-col justify-center items-center content-center"
+		hx-ext="response-targets"
+	>
 		<h1>
 			Register an account
 		</h1>
 		<form
+			class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
 			hx-post="/register"
 			hx-trigger="submit"
 			hx-target-401="#register-error"
 		>
 			<div id="register-error"></div>
-			<div>
+			<div class="mb-5">
 				<label for="email">Your email</label>
 				<input type="email" name="email" id="email" placeholder="name@company.com" required=""/>
 			</div>
-			<div>
+			<div class="mb-5">
 				<label for="password">Password</label>
 				<input type="password" name="password" id="password" placeholder="••••••••" required=""/>
 			</div>
-			<button type="submit">
+			<button
+				type="submit"
+				class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+			>
 				Register
 			</button>
 			<p>
@@ -30,11 +37,13 @@ templ RegisterPage() {
 	</div>
 }
 
-templ RegisterSuccess() {
+templ RegisterSuccess(message string) {
 	<h1>Registration successful</h1>
+	<div>
+		<span>{ message }</span>
+	</div>
 	<p>Go to <a href="login">login</a></p>
 }
-
 
 templ RegisterError() {
 	<div>

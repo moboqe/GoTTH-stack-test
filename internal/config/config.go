@@ -1,26 +1,39 @@
 package config
 
-import "github.com/kelseyhightower/envconfig"
+import (
+	"log"
+	"os"
+	"strings"
+
+	"github.com/ilyakaznacheev/cleanenv"
+)
 
 type Config struct {
-	Port              string `envconfig:"PORT" default:":4000"`
-	DatabaseName      string `envconfig:"DATABASE_NAME" default:"goth.db"`
-	SessionCookieName string `envconfig:"SESSION_COOKIE_NAME" default:"session"`
-}
-
-func loadConfig() (*Config, error) {
-	var cfg Config
-	err := envconfig.Process("", &cfg)
-	if err != nil {
-		return nil, err
-	}
-	return &cfg, nil
+	Port              string `yaml:"port" env-default:"9001"`
+	DBName            string `yaml:"db_name" env-default:"gotth.db"`
+	SessionCookieName string `yaml:"session_cookie_name" env-default:"session"`
 }
 
 func MustLoadConfig() *Config {
-	cfg, err := loadConfig()
+	configPath, err := os.Getwd()
 	if err != nil {
-		panic(err)
+		log.Fatal(err.Error())
 	}
-	return cfg
+	if configPath == "" {
+		log.Fatal("CONFIG_PATH is not set")
+	}
+	configPath = strings.Join([]string{configPath, `\config\config.yaml`}, "")
+
+	// check if file exists
+	if _, err := os.Stat(configPath); os.IsNotExist(err) {
+		log.Fatalf("config file does not exist: %s", configPath)
+	}
+
+	var cfg Config
+
+	if err := cleanenv.ReadConfig(configPath, &cfg); err != nil {
+		log.Fatalf("cannot read config: %s", err)
+	}
+
+	return &cfg
 }

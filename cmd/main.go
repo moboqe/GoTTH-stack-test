@@ -37,7 +37,7 @@ func main() {
 
 	cfg := config.MustLoadConfig()
 
-	db := database.MustOpen(cfg.DatabaseName)
+	db := database.MustOpen(cfg.DBName)
 	passwordhash := passwordhash.NewHPasswordHash()
 
 	userStore := dbstore.NewUserStore(

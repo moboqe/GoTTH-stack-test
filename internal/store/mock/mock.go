@@ -10,10 +10,10 @@ type UserStoreMock struct {
 	mock.Mock
 }
 
-func (m *UserStoreMock) CreateUser(email string, password string) error {
+func (m *UserStoreMock) CreateUser(email string, password string) (string, error) {
 	args := m.Called(email, password)
 
-	return args.Error(0)
+	return args.Get(0).(string), args.Error(1)
 }
 
 func (m *UserStoreMock) GetUser(email string) (*store.User, error) {

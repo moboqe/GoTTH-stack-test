@@ -1,11 +1,15 @@
 package templates
 
 templ Login(title string) {
-	<div hx-ext="response-targets">
+	<div
+		class="flex flex-col justify-center items-center content-center"
+		hx-ext="response-targets"
+	>
 		<h1>
 			Sign in to your account
 		</h1>
 		<form
+			class="bg-white align-center shadow-md rounded px-8 pt-6 pb-8 mb-4"
 			hx-post="/login"
 			hx-trigger="submit"
 			hx-target-401="#login-error"
@@ -33,7 +37,10 @@ templ Login(title string) {
 					autocomplete="current-password"
 				/>
 			</div>
-			<button type="submit">
+			<button
+				type="submit"
+				class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+			>
 				Sign in
 			</button>
 			<p>

@@ -24,17 +24,16 @@ func (h *PostRegisterHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) 
 	email := r.FormValue("email")
 	password := r.FormValue("password")
 
-	err := h.userStore.CreateUser(email, password)
+	res, err := h.userStore.CreateUser(email, password)
 
 	if err != nil {
-
 		w.WriteHeader(http.StatusBadRequest)
 		c := templates.RegisterError()
 		c.Render(r.Context(), w)
 		return
 	}
 
-	c := templates.RegisterSuccess()
+	c := templates.RegisterSuccess(res)
 	err = c.Render(r.Context(), w)
 
 	if err != nil {

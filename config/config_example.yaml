@@ -1,0 +1,3 @@
+port: "8200"
+db_name: "test.db"
+session_cookie_name: "test"

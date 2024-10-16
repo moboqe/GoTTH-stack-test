@@ -32,3 +32,7 @@ tmp
 node_modules/**
 package-lock.json
 package.json
+
+#Config files
+config/config_trinity.yaml
+config/config.yaml

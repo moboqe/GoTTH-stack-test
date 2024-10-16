@@ -1,0 +1,10 @@
+mysql:
+  user: "test"
+  password: "test"
+  net: "tcp"
+  addr: "127.0.0.1:4300"
+  db_name: "auth"
+world_server:
+  world_serverurl: "http://127.0.0.1:8008"
+  root_username: "1#1"
+  root_password: "password"
